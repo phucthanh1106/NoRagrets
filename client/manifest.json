@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "No Ragrets",
+    "version": "1.0.0"  ,
+    "description": "Prevent people from having regrets of not trying their best",
+    "permissions": ["storage"],
+    "content-scripts": [
+        {
+            "matches": []
+        }
+    ],
+    "action": {
+        "default_title": "No Ragrets",
+        "default_popup": "index.html"
+    },
+    
+    "options_page": "index.html"
+}
