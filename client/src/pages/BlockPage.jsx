@@ -29,6 +29,7 @@ export default function BlockPage() {
         setIntervalId(newInterval);
     };
 
+    
     useEffect(() => {
         let timer;
         // Fetching questions and time

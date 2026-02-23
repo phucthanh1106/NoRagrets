@@ -35,11 +35,26 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-
+/**
+ * This fires whenever a tab changes.
+ * 
+ * Parameters:
+ * - changeInfo is an object describing what changed in that update event:
+ *  + It does NOT always contain everything.
+ *  + It might show status: loading or show url: "https://www.youtube.com/"
+ *  => changeInfo.url ONLY exists when the URL changes and it's a string which can be like "https://www.youtube.com/watch?v=abc123"
+ * - tabId is the id number of the tab being opened
+ * - tab is the full tab object (state after change)
+ * 
+ */
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // Only run our logic when the URL actually changes and is fully available
     if (changeInfo.url) {
         try {
+            /**
+             * new URL() converts a raw URL string into a structured object 
+             * Eg: {hostname: "www.youtube.com", protocol: "https:"}
+             */ 
             const url = new URL(changeInfo.url);
             let hostname = url.hostname; // hostname will be something like www.youtube.com only
 
@@ -55,7 +70,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                             return; 
                 }
 
-                // temporary allow user to browse this website
+                // temporary allow user to browse this website when they click continue
                 if (result.tempAllow === changeInfo.url) {
                     console.log("Temporary access granted");
 
@@ -69,6 +84,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 const blockPageUrl = chrome.runtime.getURL(`index.html?type=block&target=${targetParam}`);
 
                 if (settings.useWhitelist) {
+                    if (changeInfo.url.startsWith("chrome-extension://") || changeInfo.url.startsWith("chrome://")) {
+                        return; 
+                    }
                     const whitelist = result.whitelist || [];
                     if (!whitelist.includes(hostname)) {
                         chrome.tabs.update(tabId, { url: blockPageUrl });

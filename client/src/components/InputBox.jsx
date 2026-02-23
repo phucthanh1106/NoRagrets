@@ -14,19 +14,22 @@ export default function InputBox({ category, label, placeholder }) {
     }, [category])
 
     const handleAddItem = () => {
-        const newItem = input.trim();
-        if (bank.includes(newItem) || !newItem) {
-            alert("Duplicate domain name!")
-            return;
-        } 
+        let newItem = input.trim();
 
-        // Website validation
-        const domainRegex = /^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-21]{2,63}$|^localhost$/i;
-
-        if (!domainRegex.test(newItem) && (category == "blacklist" || category == "whitelist")) {
-            alert("Please enter a valid domain (e.g., website.com)");
-            return;
+        // If user didn't include protocol, add https://
+        if (!newItem.startsWith("http://") && !newItem.startsWith("https://")) {
+            newItem = "https://" + newItem;
         }
+
+        const parsedUrl = new URL(newItem);
+        let hostname = parsedUrl.hostname;
+
+        // normalize www
+        if (hostname.startsWith("www.")) {
+            hostname = hostname.slice(4);
+        }
+
+        newItem = hostname; // store clean domain only
 
         const newBank = [...bank, newItem];
         setBank(newBank);
