@@ -91,7 +91,7 @@ function Popup() {
                         strokeLinejoin="round" 
                         className={`w-6 h-6 transition-all ${firstRender ? 'duration-0' : 'duration-300'} 
                             ${isActive 
-                                ? 'text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]' 
+                                ? 'text-emerald-600 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]' 
                                 : 'text-gray-300 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'
                             }`}
                     >
