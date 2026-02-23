@@ -1,16 +1,17 @@
 {
     "manifest_version": 3,
-    "name": "No Ragrets",
+    "name": "NoRagrets",
     "version": "1.0.0"  ,
     "description": "Prevent people from having regrets of not trying their best",
-    "permissions": ["storage"],
-    "content-scripts": [
-        {
-            "matches": []
-        }
+    "permissions": [
+        "storage",
+        "tabs"
     ],
+    "background": {
+        "service_worker": "background.js"
+    },
     "action": {
-        "default_title": "No Ragrets",
+        "default_title": "NoRagrets",
         "default_popup": "index.html"
     },
     

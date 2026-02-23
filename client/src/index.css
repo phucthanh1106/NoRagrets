@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@keyframes fillProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Once the button is "active" (via your future JS logic), 
+   we can swap the text and color like this: */
+.btn-complete {
+  background-color: #0f172a; /* slate-900 */
+  color: white;
+  cursor: pointer;
+}
