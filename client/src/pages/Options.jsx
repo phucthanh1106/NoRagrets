@@ -33,8 +33,8 @@ const Options = () => {
 
             <nav className="flex flex-col gap-1 ">
                 <SidebarItem id="blocked" label="Blocked List" icon="⊘" activeTab={activeTab} setActiveTab={setActiveTab} />
-                <SidebarItem id="questions" label="Self-Questions" icon="?" activeTab={activeTab} setActiveTab={setActiveTab} />
-                <SidebarItem id="dreams" label="Dreams" icon="☾" activeTab={activeTab} setActiveTab={setActiveTab} />
+                <SidebarItem id="questions" label="Self-questions" icon="?" activeTab={activeTab} setActiveTab={setActiveTab} />
+                <SidebarItem id="dreams" label="Goals" icon="⟡" activeTab={activeTab} setActiveTab={setActiveTab} />
                 <SidebarItem id="settings" label="Settings" icon="⛭" activeTab={activeTab} setActiveTab={setActiveTab}/>
             </nav>
         </aside>
@@ -73,7 +73,7 @@ const Options = () => {
             {activeTab === 'dreams' && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-300">
                 <h2 className="text-3xl font-black mb-8">What are you working for?</h2>
-                <InputBox category="dreams" label="Your Dreams" placeholder="Financial freedom, traveling..." isTextArea />
+                <InputBox category="dreams" label="Your Goals" placeholder="Financial freedom, traveling..." isTextArea />
             </div>
             )}
 
